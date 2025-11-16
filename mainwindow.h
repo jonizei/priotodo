@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "createtaskform.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +20,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    CreateTaskForm *createTaskForm;
+
+private slots:
+    void on_btnCreateTask_clicked();
 };
 #endif // MAINWINDOW_H

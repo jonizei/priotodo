@@ -25,6 +25,9 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="lnTitle">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -35,6 +38,9 @@
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="pteContent">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>300</x>
