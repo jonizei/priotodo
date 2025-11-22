@@ -38,16 +38,53 @@ void MainWindow::updateTaskView()
     }
 }
 
+void MainWindow::on_btnRemoveTask_clicked()
+{
+    if (_selectedTask.isNull())
+    {
+        return;
+    }
+
+    for(int i = 0; i < vecTasks.count(); i++)
+    {
+        Task task = vecTasks.at(i);
+        if (_selectedTask != task.uuid())
+        {
+            continue;
+        }
+
+        vecTasks.removeAt(i);
+        _selectedTask = QUuid();
+        updateTaskView();
+        clearTaskPreview();
+        return;
+    }
+}
+
 void MainWindow::onTaskItemClicked(QListWidgetItem *item)
 {
     for (int i = 0; i < vecTasks.count(); i++)
     {
         Task task = vecTasks.at(i);
-        if (task.uuid() == item->data(Qt::UserRole))
+        if (task.uuid() != item->data(Qt::UserRole))
         {
-            ui->lnTitle->setText(task.title());
-            ui->pteContent->setPlainText(task.content());
-            return;
+            continue;
         }
+
+        _selectedTask = task.uuid();
+        ui->lnTitle->setText(task.title());
+        ui->pteContent->setPlainText(task.content());
+        return;
     }
 }
+
+void MainWindow::clearTaskPreview()
+{
+    ui->lnTitle->clear();
+    ui->pteContent->clear();
+}
+
+
+
+
+
